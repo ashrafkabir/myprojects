@@ -1,0 +1,15 @@
+{
+  "name": "mong",
+  "version": "1.0.0",
+  "description": "mongoose test bed",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "repository": "https://github.com/ashrafkabir/testrepository/blob/20c2c257612b2440dc56b49f358e77a58c2facd8/",
+  "dependencies": {
+    "mongoose": "^4.5.9"
+  }
+}
