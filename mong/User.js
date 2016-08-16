@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:27017/Ecomm');
+//connect to the mlab mongodb instance on the cloud. User: ashrafkabir_2000@yahoo.com passw0rd
+mongoose.connect('mongodb://admin:passw0rd@ds161475.mlab.com:61475/bn-ecomm');
 var Schema = mongoose.Schema;
 
 // create a schema
