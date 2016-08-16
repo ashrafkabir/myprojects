@@ -1,6 +1,6 @@
 //Just added a comment
 //added another comment
-var User = require('./ver1/User');
+var User = require('./User');
 
 // create a new user called chris
 var chris = new User({
