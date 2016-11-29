@@ -17,6 +17,16 @@ app.get('/productlist', function(req, res) {
   });
 });
 
+var db2 = mongojs('shopper', ['categories']);
+app.get('/categorylist', function(req, res) {
+  console.log("I received a get request");
+
+  db2.categories.find(function(err, docs){
+    console.log(docs);
+    res.json(docs);
+  });
+});
+
 app.post('/productlist', function (req, res) {
   console.log(req.body);
   db.contactlist.insert(req.body, function (err, doc) {
