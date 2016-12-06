@@ -159,20 +159,16 @@
 							<div class="panel panel-default" ng-repeat="category in categoryList">
 								<div class="panel-heading">
 									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#sportswear">
+										<a data-toggle="collapse" data-parent="#accordian" href="#{{category.name}}">
 											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
 											{{category.name}}
 										</a>
 									</h4>
 								</div>
 								<div id="{{category.name}}" class="panel-collapse collapse">
-									<div class="panel-body">
+									<div class="panel-body" >
 										<ul>
-											<li><a href="">Nike </a></li>
-											<li><a href="">Under Armour </a></li>
-											<li><a href="">Adidas </a></li>
-											<li><a href="">Puma</a></li>
-											<li><a href="">ASICS </a></li>
+											<li ng-repeat="prod in catprodList[category.id]"><a href="">{{prod.name}} </a></li>
 										</ul>
 									</div>
 								</div>

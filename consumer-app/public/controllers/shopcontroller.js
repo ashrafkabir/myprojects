@@ -6,13 +6,22 @@ myApp.controller('shopperShopConsumerAppCtrl', ['$scope', '$http', function($sco
       console.log("I got the product list I requested");
       $scope.productList = response;
       });
+      $scope.product = "";
 
     $http.get('/categorylist').success(function(catresponse){
         console.log("I got the category list I requested");
       $scope.categoryList = catresponse;
-      $scope.product = "";
+
+      $scope.catprodList =[];
+      /*angular.forEach ($scope.categoryList,function(value,key){
+          console.log("searching for category: "+value.name);
+          $scope.catprodList.push($scope.CatProds(value.id));
+      });*/
+
+
     });
   };
+  refresh();
 
 
 
@@ -26,10 +35,10 @@ myApp.controller('shopperShopConsumerAppCtrl', ['$scope', '$http', function($sco
     });
   };
 
-  $scope.remove = function (id) {
-    console.log(id);
-    $http.delete('/contactlist/' + id).success(function (response){
-      refresh();
+  $scope.CatProds = function (id) {
+    console.log("In CatProds: "+id);
+    $http.get('/catprods/' + id).success(function (response){
+      console.log("I received the following response in CatProds: "+response);
     });
   };
 
