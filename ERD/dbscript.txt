@@ -14,17 +14,21 @@ db.createCollection('area')
 
 //insert documents
 db.getCollection('categories').insert({id:1,name:"Milk",desc:"Tetrapak Milk",parent_id:null,child_id:null})
-db.getCollection('products').insert({    id:1,
+db.getCollection('products').insert({    
+	id:1,
     name:"Nurpur Milk 1 Ltr Carton",
     desc:"Nurpur's full cream milk in convenient 1 Ltr twist cap packaging",
     barcode:"23089472820",
     brand: "Nurpur",
     price:"1438",
     rating:"4",
-stock_qty:20,
-tags:"milk,full cream,dairy"})
-db.getCollection('product_category').insert({    id:1,
+	stock_qty:20,
+	tags:"milk,full cream,dairy"
+	})
+db.getCollection('product_category').insert({
+	id:1,
     prod_id:1,
-    cat_id:1})
+    cat_id:1
+	})
 db.getCollection('retailer').insert({id:1, name:"Rashid Stores",desc:"General Store supplying grocery products",type:"Grocery",area_id:1})
 db.getCollection('area').insert({id:1, north:"24.87N20.98E", south:"27.38N23.98E",east:"24.87N20.92E",west:"24.83N20.99E"})

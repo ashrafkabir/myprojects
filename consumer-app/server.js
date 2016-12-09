@@ -2,6 +2,7 @@ var express = require("express");
 var mongojs = require("mongojs");
 var bodyParser = require("body-parser");
 var modelProducts = require("./public/models/modelProducts")
+var modelCategories = require("./public/models/modelCategories")
 
 var app = express();
 var db = mongojs('shopper', ['products']);
@@ -9,42 +10,38 @@ var db = mongojs('shopper', ['products']);
 app.use(express.static(__dirname +"/public"));
 app.use(bodyParser.json());
 
-app.get('/productlist', function(req, res) {
-  console.log("I received a get request");
+// Fetch the product list from the database
+      app.get('/productlist', function(req, res) {
+        console.log("=== Product list wanted.");
 
+        var query = modelProducts.find({});
+        query.exec(function (err, docs) {
+          // called when the `query.complete` or `query.error` are called
+          // internally
+          console.log("=== Product, this is what i got: "+docs);
+          res.json(docs);
+        });
+      });
 
+// Fetch the category list from the database
+      app.get('/categorylist', function(req, res) {
+        console.log("=== Categories list wanted");
 
-  /*db.products.find(function(err, docs){
-    console.log(docs);
-    res.json(docs);
-  });*/
-  var query = modelProducts.find({});
+        var query = modelCategories.find({});
+        query.exec(function(err,docs){
+          console.log("=== Categories, this is what i got: " + docs);
+          res.json(docs);
+        });
+      });
 
-query.exec(function (err, docs) {
-  // called when the `query.complete` or `query.error` are called
-  // internally
-  console.log("Inside find: "+docs);
-  res.json(docs);
-});
-
-});
-
-var db2 = mongojs('shopper', ['categories']);
-app.get('/categorylist', function(req, res) {
-  console.log("I received a category request");
-
-  db2.categories.find(function(err, docs){
-    console.log(docs);
-    res.json(docs);
-  });
-});
-
+/*
 app.post('/productlist', function (req, res) {
   console.log(req.body);
   db.contactlist.insert(req.body, function (err, doc) {
     res.json(doc);
   });
 });
+*/
 
 app.get('/catprods/:id', function (req, res) {
   var catid = req.params.id;
@@ -75,6 +72,7 @@ console.log("Inside: /n"+prods);
 
 });
 
+/*
 app.delete('/contactlist/:id', function (req, res) {
   var id = req.params.id;
   console.log(id);
@@ -82,6 +80,7 @@ app.delete('/contactlist/:id', function (req, res) {
     res.json(doc);
   });
 });
+*/
 
 app.get('/contactlist/:id', function(req, res) {
   var id = req.params.id;
@@ -91,6 +90,7 @@ app.get('/contactlist/:id', function(req, res) {
   });
 });
 
+/*
 app.put('/contactlist/:id', function(req, res){
   var id = req.params.id;
   console.log("Update / Put name: " + req.body.name);
@@ -103,10 +103,7 @@ app.put('/contactlist/:id', function(req, res){
       res.json(doc);
     });
 });
-
-/*app.get('/', function(req, res){
-  res.send("Hello world from server.js");
-});*/
+*/
 
 app.listen(3000);
 console.log("Server running on port 3000");
